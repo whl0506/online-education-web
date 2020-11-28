@@ -61,16 +61,10 @@ export default {
   },
 
   created() {
-    console.log('created')
-    if (this.$route.params && this.$route.params.id) {
-      console.log(this.$route.params.id)
-      const id = this.$route.params.id
-      this.fetchDataById(id)
-    }
+    this.init()
   },
 
   methods: {
-
     init() {
       if (this.$route.params && this.$route.params.id) {
         const id = this.$route.params.id
@@ -84,7 +78,7 @@ export default {
 
     saveOrUpdate() {
       this.saveBtnDisabled = true
-      if (!this.teacher.id) {
+      if (!this.$route.params.id) {
         this.saveData()
       } else {
         this.updateData()
@@ -95,10 +89,10 @@ export default {
       teacher.save(this.teacher).then(response => {
         return this.$message({
           type: 'success',
-          message: '保存成功！'
+          message: '保存成功!'
         })
-      }).then(response => {
-        this.$route.push({ path: '/edu/teacher/index' })
+      }).then(resposne => {
+        this.$router.push({ path: '/edu/teacher/list' })
       }).catch((response) => {
         // console.log(response)
         this.$message({
@@ -111,7 +105,7 @@ export default {
     fetchDataById(id) {
       teacher.getById(id).then(response => {
         this.teacher = response.data.item
-      }).catch((response) => {
+      }).catch(() => {
         this.$message({
           type: 'error',
           message: '获取数据失败'
@@ -120,18 +114,17 @@ export default {
     },
     updateData() {
       this.saveBtnDisabled = true
-      teacher.updateById(this.teacher).then(response => {
+      teacher.updateById(this.teacher).then(() => {
         return this.$message({
           type: 'success',
           message: '修改成功!'
         })
-      }).then(resposne => {
-        this.$router.push({ path: '/edu/teacher/index' })
-      }).catch((response) => {
-        // console.log(response)
+      }).then(() => {
+        this.$router.push({ path: '/edu/teacher/list' })
+      }).catch(() => {
         this.$message({
           type: 'error',
-          message: '保存失败'
+          message: '修改失败'
         })
       })
     }

@@ -44,7 +44,7 @@ export const constantRouterMap = [
   {
     path: '/edu/teacher',
     component: Layout,
-    redirect: '/edu/teacher/list',
+    redirect: '/edu/teacher',
     name: 'Teacher',
     meta: { title: '讲师管理', icon: 'peoples' },
     children: [
@@ -55,11 +55,17 @@ export const constantRouterMap = [
         meta: { title: '讲师列表'}
       },
       {
+        path: 'save',
+        name: 'EduTeacherSave',
+        component: () => import('@/views/edu/teacher/form/index'),
+        meta: { title: '添加讲师', noCache: true },
+      },
+      {
         path: 'edit/:id',
         name: 'EduTeacherEdit',
         component: () => import('@/views/edu/teacher/form/index'),
-        meta: { title: '添加讲师', noCache: true },
-        hidden: false
+        meta: { title: '修改讲师', noCache: true },
+        hidden: true
       }
     ]
   },

@@ -112,9 +112,10 @@ export default {
       console.log('加载列表')
       this.page = page
       this.listLoading = true
-      teacher.getPageList(this.page, this.limit, this.searchObj).then(response => {
+      console.log("searchObj="+this.searchObj)
+      teacher.getPageList(this.page,this.limit,this.searchObj).then(response => {
         // debug设置断点调试
-        console.log(response)
+        console.log(this.searchObj)
         if (response.success === true) {
           this.list = response.data.items
           this.total = response.data.total
