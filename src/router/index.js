@@ -38,9 +38,7 @@ export const constantRouterMap = [
       meta: { title: '谷粒学院后台首页', icon: 'dashboard' }
     }]
   },
-
   // 讲师管理
-
   {
     path: '/edu/teacher',
     component: Layout,
@@ -52,20 +50,42 @@ export const constantRouterMap = [
         path: 'list',
         name: 'EduTeacherList',
         component: () => import('@/views/edu/teacher/list/index'),
-        meta: { title: '讲师列表'}
+        meta: { title: '讲师列表', icon:'table'}
       },
       {
         path: 'save',
         name: 'EduTeacherSave',
         component: () => import('@/views/edu/teacher/form/index'),
-        meta: { title: '添加讲师', noCache: true },
+        meta: { title: '添加讲师', icon:'form' },
       },
       {
         path: 'edit/:id',
         name: 'EduTeacherEdit',
         component: () => import('@/views/edu/teacher/form/index'),
-        meta: { title: '修改讲师', noCache: true },
+        meta: { title: '修改讲师', icon:'form' },
         hidden: true
+      }
+    ]
+  },
+  // 课程分类管理
+  {
+    path: '/edu/subject',
+    component: Layout,
+    redirect: '/edu/subject/list',
+    name: 'Subject',
+    meta: { title: '课程分类管理', icon: 'nested' },
+    children: [
+      {
+        path: 'list',
+        name: 'EduSubjectList',
+        component: () => import('@/views/edu/subject/list'),
+        meta: { title: '课程分类列表', icon:'list' }
+      },
+      {
+        path: 'import',
+        name: 'EduSubjectImport',
+        component: () => import('@/views/edu/subject/import'),
+        meta: { title: '导入课程分类', icon:'tree'}
       }
     ]
   },
