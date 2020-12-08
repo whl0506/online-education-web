@@ -239,9 +239,7 @@
             type: 'success',
             message: '修改成功!'
           })
-          return response// 将响应结果传递给then
-        }).then(response => {
-          this.$router.push({ path: '/edu/course/chapter/' + response.data.courseId })
+          this.$router.push({ path: '/edu/course/chapter/' + this.courseInfo.id })
         }).catch((response) => {
           // console.log(response)
           this.$message({

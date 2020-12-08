@@ -29,5 +29,11 @@ export default {
       method: 'put',
       data: courseInfo
     })
+  },
+  removeById(id) {
+    return request({
+      url: `${api_name}/${id}`,
+      method: 'delete'
+    })
   }
 }
