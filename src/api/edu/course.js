@@ -35,5 +35,18 @@ export default {
       url: `${api_name}/${id}`,
       method: 'delete'
     })
+  },
+  getCoursePublishInfoById(id) {
+    return request({
+      url: `${api_name}/course-publish-info/${id}`,
+      method: 'get'
+    })
+  },
+
+  publishCourse(id) {
+    return request({
+      url: `${api_name}/publish-course/${id}`,
+      method: 'put'
+    })
   }
 }
